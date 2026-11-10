@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Empty Room — three agents with nothing to do</title>
+<meta name="description" content="Three AI agents, one plain room, no task. Watch what they do with the nothing, drop an object in, and see what changes. Built on Pollinations." />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="bar">
+  <a class="brand" href="./">Empty Room</a>
+  <p class="tag">Three agents. Nothing to do. Watch what they invent.</p>
+  <button id="pollen-pill" class="pill" type="button">Connect Pollen</button>
+</header>
+
+<main>
+  <section class="stage">
+    <div class="room" id="room"></div>
+    <aside class="side">
+      <h2>Notes on the wall</h2>
+      <ul class="notes" id="notes"><li class="muted">nothing written yet</li></ul>
+      <h2>Drop something in</h2>
+      <div class="row">
+        <input id="drop" placeholder="a ball, a lamp, a radio…" maxlength="40" />
+        <button id="drop-btn" class="ghost" type="button">Add</button>
+      </div>
+    </aside>
+  </section>
+
+  <section class="controls">
+    <button id="step" class="go" type="button">One turn</button>
+    <button id="auto" class="ghost" type="button">Leave them alone</button>
+    <span class="hint" id="hint">Each turn asks the three agents what they do, one call each.</span>
+    <span class="tick" id="tick">tick 0</span>
+  </section>
+
+  <ol class="transcript" id="transcript"></ol>
+
+  <section class="about">
+    <p>Left alone with nothing to do, models do not idle. They invent small games, set rules and
+      follow them. This room is the whole experiment: three agents, one chair, a scrap of paper and
+      a pencil, no task and no reward. Each turn every agent gets the same plain state — who is
+      here, what is on the floor, who holds what, what has been said — and answers with one action
+      and one line of speech. Add an object and the same three agents have to make sense of it.</p>
+    <p>Actions are applied by the page, not by the model: an impossible move is logged as refused.
+      Every call spends the reader's own
+      <a href="https://github.com/pollinations/pollinations/blob/main/BRING_YOUR_OWN_POLLEN.md" rel="noopener">Pollen</a>
+      through <code>gen.pollinations.ai</code>; nothing is stored on a server.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <a href="https://pollinations.ai/?ref=badge" rel="noopener">
+    <img src="https://raw.githubusercontent.com/pollinations/pollinations/main/packages/ui/src/brand/badge-made-with.svg" alt="Made with pollinations.ai" height="28" />
+  </a>
+</footer>
+
+<dialog id="connect">
+  <h2>Connect your Pollen</h2>
+  <button id="device" class="go" type="button">Sign in with a code</button>
+  <p id="device-code" class="code" hidden></p>
+  <details>
+    <summary>Or paste an sk_ key</summary>
+    <div class="row">
+      <input id="sk" type="password" placeholder="sk_…" autocomplete="off" />
+      <button id="use-sk" class="ghost" type="button">Use key</button>
+    </div>
+  </details>
+  <p id="connect-msg" class="hint"></p>
+  <button id="close-connect" class="ghost wide" type="button">Close</button>
+</dialog>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
